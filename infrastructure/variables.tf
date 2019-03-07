@@ -3,6 +3,20 @@
 # -----------------------------------------------------------------------------
 data "aws_availability_zones" "available" {}
 
+data "aws_ami" "target_ami" {
+  most_recent = true
+
+  filter {
+    name   = "owner-alias"
+    values = ["amazon"]
+  }
+
+  filter {
+    name   = "name"
+    values = ["amzn2-ami-hvm-2.0.20190110-x86_64-ebs"]
+  }
+}
+
 # -----------------------------------------------------------------------------
 # items not likely to change much
 # -----------------------------------------------------------------------------
@@ -24,7 +38,22 @@ variable "tags" {
 
 variable "namespace" {
   description = "base name to use for putting resources in different namespaces"
-  default = "swarm"
+  default     = "swarm"
+}
+
+variable "worker_count" {
+  description = "number of swarm worker nodes to launch"
+  default = 4
+}
+
+variable "sleep_seconds" {
+  description = "number of seconds each worker waits to hope that the master is awake and configured"
+  default = 180
+}
+
+variable "master_sleep_seconds" {
+  description = "number of seconds the master will wait for the workers to sign up"
+  default = 300  
 }
 
 # -----------------------------------------------------------------------------
