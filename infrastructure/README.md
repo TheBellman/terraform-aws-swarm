@@ -4,6 +4,12 @@ This projects sets up a VPC and subnet to place assets in, and erects a Docker S
 
 The swarm master instance is an EC2 instance in the "public" network, on a host with a public IP address so that it can be easily accessed from "outside". The swarm worker instances are all in the "private" network, and are not directly accessible from "outside" the environment.
 
+## Prequisites
+It is assumed that:
+ - appropriate AWS credentials are available
+ - terraform is available (this was developed with 0.11.11 and provider.aws v1.60.0)
+ - the scripts are being run on a unix account.
+
 ## Usage
 
  - use values from `bootstrap\backend` to update `backend.tf` if necessary
