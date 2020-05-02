@@ -53,7 +53,7 @@ variable "sleep_seconds" {
 
 variable "master_sleep_seconds" {
   description = "number of seconds the master will wait for the workers to sign up"
-  default = 300  
+  default = 300
 }
 
 # -----------------------------------------------------------------------------
